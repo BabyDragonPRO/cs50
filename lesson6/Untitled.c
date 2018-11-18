@@ -3,9 +3,9 @@
 
 int main(void)
 {
-    string start = get_string("What is your name? <Dan, Roma>");
+    /* string start = get_string("What is your name? <Dan, Roma>");
 
-    /* switch(start)
+    switch(start)
     {
         case 'Dan':
             char char1 = get_char("Do you eat shit? <y, n>");
@@ -18,8 +18,8 @@ int main(void)
             printf("Hi, creator of this program");
             char char1 = get_char("How are you?");
             break;
-    } */
-    if (start == 'Dan'){
+    }
+    if (start == "Dan"){
         switch(start)
         {
             case 'Dan':
@@ -29,5 +29,7 @@ int main(void)
                         printf("Of course you debilous , strange and stupid child...")
                 }
         }
-    }
+    }*/
+
+
 }
