@@ -5,7 +5,7 @@ double square(double number){
     return number * number;
 }
 
-int stepen(void){
+double stepen(void){
     double answer = 0;
     double number = 0;
     double stepen = 0;
@@ -24,5 +24,5 @@ int stepen(void){
 int main(void){
     //printf("square is %f cm \n",square(get_double("Write a number:")));
     //printf("number in stepen is %i\n", stepen(get_int[0]("write a number that you want in stepen")), stepen(get_int[1]("write a number that you want make stepen")))
-    printf("answer: %d\n",stepen());
+    printf("answer: %lf\n",stepen());
 }
