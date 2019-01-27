@@ -31,5 +31,10 @@ int main(int argc, const char *argv[]){
     cout << boolalpha << is_quote(vec, "reklam") << '\n'
                       << is_quote(vec, "car") << '\n';
 
+    for(int i = 0; i < vec.size(); i++){
+            cout << vec[i] << endl;
+    }
+
+    cout << str << endl;
     return 0;
 }
