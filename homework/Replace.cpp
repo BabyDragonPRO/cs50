@@ -1,5 +1,6 @@
 #include <iostream>
 #include <string>
+using namespace std;
 
 int main () {
    std::string str="this is a test string.";
