@@ -4,14 +4,14 @@ using namespace std;
 
 int main(){
     char name[15];
-    char color[20];
+    int age = 0;
 
     cout << "Enter your name: ";
     cin >> name;
-    cout << "Enter your favorite color: ";
-    cin >> color;
+    cout << "Enter your age: ";
+    cin >> age;
 
-    cout << "Your name is " << name << ", and your favorite color is " << color << endl;
+    cout << "Your name is " << name << ", and your age is " << age << endl;
 
     return 0;
 }
