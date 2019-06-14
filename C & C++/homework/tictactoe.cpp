@@ -20,7 +20,7 @@ string difficulty = ("none"); // difficulty on which bot depends how to move
 
 void Draw()  // function to draw the board and extra information
 {
-	system("CLS");
+	cout << endl;
 	cout << "Tic Tac Toe v1.0" << endl;
 	cout << "Gamemode is " << gamemode << endl;
 	if (gamemode == "singleplayer")
@@ -483,14 +483,16 @@ void Menu() // menu
 {
 	while (1)
 	{
+		bool stop = false;
 		char temp;
-		system("CLS");
+		cout << endl;
 		cout << "Tic Tac Toe v1.0" << endl;
 		cout << "If you want to exit write(e)" << endl;
 		cout << "Do you want to play in multiplayer(m) or in singleplayer(s)?: ";
 		cin >> temp;
 		temp = tolower(temp);
-		while (1) {
+		while (1)
+		{
 			temp;
 			if (temp == 'm')
 			{
@@ -504,7 +506,8 @@ void Menu() // menu
 			}
 			else if (temp == 'e')
 			{
-				system("pause");
+				stop = true;
+				break;
 			}
 			else
 			{
@@ -515,12 +518,15 @@ void Menu() // menu
 				temp = tolower(temp);
 			}
 		}
+		if(stop == true)
+		{
+			break;
+		}
 	}
 }
 
 int main()
 {
 	Menu();
-	system("pause");
 	return 0;
 }
