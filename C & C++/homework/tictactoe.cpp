@@ -27,21 +27,27 @@ void Draw()  // function to draw the board and extra information
 		cout << "Difficulty is " << difficulty << endl;
 	cout << endl;
 
-	for (int i = 0; i < 3; i++) // drawing game board
-	{
-		for (int j = 0; j < 3; j++)
-		{
-			cout << matrix[i][j] << " ";
-		}
-		cout << endl;
-	}
+	cout << "     |     |     " << endl;
+    cout << "  " << matrix[0][0] << "  |  " << matrix[0][1] << "  |  " << matrix[0][2] << endl;
+
+    cout << "_____|_____|_____" << endl;
+    cout << "     |     |     " << endl;
+
+    cout << "  " << matrix[1][0] << "  |  " << matrix[1][1] << "  |  " << matrix[1][2] << endl;
+
+    cout << "_____|_____|_____" << endl;
+    cout << "     |     |     " << endl;
+
+    cout << "  " << matrix[2][0] << "  |  " << matrix[2][1] << "  |  " << matrix[2][2] << endl;
+
+    cout << "     |     |     " << endl << endl;
 }
 
 void MakeMatrix() // make matrix for the begining of game
 {
 	for (int i = 0; i < 9; i++)
 	{
-		matrix[i / 3][i % 3] = (i + 1) + '0';
+		matrix[i / 3][i % 3] = ' ';
 	}
 }
 
