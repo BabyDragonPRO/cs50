@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Quoted
+{% endblock %}
+
+{% block main %}
+    <form action="/quoted" method="post">
+        <div class="form-group">
+            <li>{{ symbol }}</li>
+        </div>
+    </form>
+{% endblock %}

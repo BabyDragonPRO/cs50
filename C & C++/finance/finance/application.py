@@ -81,7 +81,7 @@ def login():
             return apology("must provide password", 403)
 
         # Query database for username
-        rows = db.insert("SELECT * FROM users WHERE username = :username",
+        rows = db.execute("SELECT * FROM users WHERE username = :username",
                           username=request.form.get("username"))
 
         # Ensure username exists and password is correct
@@ -89,14 +89,13 @@ def login():
             return apology("invalid username and/or password", 403)
 
         # Remember which user has logged in
-        session["user_id"] = rows[0]["id"]
+        session["user_id"] = rows[0]
 
         # Redirect user to home page
         return redirect("/")
     # User reached route via GET (as by clicking a link or via redirect)
     else:
         return render_template("login.html")
-    return apology("TODO")
 
 
 @app.route("/logout")
@@ -115,7 +114,18 @@ def logout():
 def quote():
     """Get stock quote."""
 
-    return apology("TODO")
+    if request.method == "POST":
+
+        # Ensure symbol was submitted
+        if not request.form.get("symbol"):
+            return apology("must provide symbol", 404)
+
+        else:
+            return render_template("quoted.html",symbol=lookup("symbol"))
+
+    # User reached route via GET (as by clicking a link or via redirect)
+    else:
+        return render_template("quote.html")
 
 
 @app.route("/register", methods=["GET", "POST"])
