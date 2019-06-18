@@ -1,13 +1,24 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Quoted
+    Quote
 {% endblock %}
 
 {% block main %}
-    <form action="/quoted" method="post">
-        <div class="form-group">
-            <li>{{ symbol }}</li>
-        </div>
-    </form>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Company Name</th>
+      <th scope="col">Latest Price</th>
+      <th scope="col">Symbol</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>{{stockinfo["name"]}}</td>
+      <td>{{stockinfo["usdPrice"]}}</td>
+      <td>{{stockinfo["symbol"]}}</td>
+    </tr>
+  </tbody>
+</table>
 {% endblock %}

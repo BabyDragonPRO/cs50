@@ -1,20 +1,93 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Rigister In
+    Register
 {% endblock %}
 
 {% block main %}
-    <form action="/register" method="post">
+    <form action="/register" method="post" id="theFormID">
         <div class="form-group">
-            <input autocomplete="off" autofocus class="form-control" name="username" placeholder="Username" type="text">
+            <input type="text" class="form-control" id="usernameID" onkeyup="UniquenessCheck()" name="username" placeholder="Username" autocomplete="off" autofocus required>
+            <div class="valid-feedback" id="valid-feedback-usernameID"></div>
+            <div class="invalid-feedback" id="invalid-feedback-usernameID"></div>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" name="password" id="passwordID" onkeyup="Match()" placeholder="Password" type="password" required>
         </div>
         <div class="form-group">
-            <input class="form-control" name="password" placeholder="Password" type="password">
+            <input class="form-control" name="confirmation" id="confirmationID" placeholder="Password (again)" type="password" required>
+            <div class="valid-feedback" id="valid-feedback-confirmationID"></div>
+            <div class="invalid-feedback" id="invalid-feedback-confirmationID"></div>
         </div>
-        <div class="form-group">
-            <input class="form-control" name="password-confirm" placeholder="Password Confirm" type="password">
-        </div>
-        <button class="btn btn-primary" type="submit">Register In</button>
+
+
+        <button class="btn btn-primary" type="submit">Register</button>
     </form>
+
+
+    <script>
+
+
+            let unique = false
+            let missing = false
+
+
+            $(document).ready(function () {
+                document.getElementById('theFormID').addEventListener('submit', function(event) {
+                    if (unique === false) {
+                      event.preventDefault();
+                      event.stopPropagation();
+                    }
+                });
+
+                document.addEventListener('keyup', function(event) {
+
+                    let username = document.getElementById('usernameID');
+                    let password = document.getElementById('passwordID');
+                    let confirmation = document.getElementById('confirmationID');
+
+                    if (!(username && username.value)) {
+                        document.getElementById('invalid-feedback-usernameID').innerHTML = "Username must be provided";
+                        document.getElementById('usernameID').classList.remove('is-valid');
+                        document.getElementById('usernameID').classList.add('is-invalid');
+
+                        wasValidated = false
+                    }
+                });
+
+            });
+
+            function UniquenessCheck() {
+                $.get('/check?username=' + document.getElementById('usernameID').value, function(data) {
+                    if (data == false) {
+                        document.getElementById('invalid-feedback-usernameID').innerHTML = "Username must be unique";
+                        document.getElementById('usernameID').classList.remove('is-valid');
+                        document.getElementById('usernameID').classList.add('is-invalid');
+                        unique = false
+                    }
+                    else {
+                        document.getElementById('valid-feedback-usernameID').innerHTML = "Looks good!";
+                        document.getElementById('usernameID').classList.remove('is-invalid');
+                        document.getElementById('usernameID').classList.add('is-valid');
+                        unique = true
+                    }
+
+                });
+            };
+
+            function Match() {
+                if ($('#passwordID').val() != $('#confirmationID').val()) {
+                    document.getElementById('invalid-feedback-confirmationID').innerHTML = "Password must match!";
+                    document.getElementById('confirmationID').classList.remove('is-valid');
+                    document.getElementById('confirmationID').classList.add('is-invalid');
+                }
+                else {
+                    document.getElementById('valid-feedback-confirmationID').innerHTML = "Nice!";
+                    document.getElementById('confirmationID').classList.remove('is-invalid');
+                    document.getElementById('confirmationID').classList.add('is-valid');
+                }
+            };
+
+    </script>
 {% endblock %}

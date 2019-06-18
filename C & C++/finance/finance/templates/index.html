@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}
+    Portfolio
+{% endblock %}
+
+{% block main %}
+
+
+<table class="table">
+  <thead>
+    <tr>
+        <th scope="col">Symbol</th>
+        <th scope="col">Company Name</th>
+        <th scope="col">Shares</th>
+        <th scope="col">Latest Price</th>
+        <th scope="col">TOTAL</th>
+    </tr>
+  </thead>
+  <tbody>
+      <tr>
+        <td>CASH</td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>{{cash}}</td>
+      </tr>
+    {% if owned|count() != 0 %}
+      {% for stock in owned %}
+        <tr>
+          <td>{{stock['symbol']}}</td>
+          <td>{{stock['companyName']}}</td>
+          <td>{{stock['shares']}}</td>
+          <td>{{stock['usdLatestPrice']}}</td>
+          <td>{{stock['usdTotal']}}</td>
+        </tr>
+      {% endfor %}
+        <tr>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td></td>
+          <td><strong>{{total}}</strong></td>
+        </tr>
+    {% endif %}
+  </tbody>
+</table>
+{% endblock %}
